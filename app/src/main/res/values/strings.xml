@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Movie Master</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <!--Kategori-->
+    <string-array name="Kategori">
+        <item>Discover</item>
+        <item>Popularity</item>
+        <item>Release Date</item>
+        <item>Revenue</item>
+        <item>Rating</item>
+    </string-array>
+
+    <string name="title_activity_splash_screen">SplashScreen</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+
+</resources>
