@@ -7,9 +7,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.yayanheryanto.moviemaster.R;
 import com.yayanheryanto.moviemaster.model.Movie;
 
@@ -76,13 +76,14 @@ public class PaginationAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
                 final MovieViewHolder movieVH = (MovieViewHolder) holder;
                 movieVH.judulMovie.setText(movie.getTitle());
-                Glide.with(context)
-                        .load(movie.getPosterPath())
-                        .into(movieVH.gambarMovie);
+//                Picasso.with(context)
+//                        .load(movie.getPosterPath())
+//                        .into(movieVH.gambarMovie);
                 break;
 
             case LOADING :
-
+                LoadingViewHolder loadingVH = (LoadingViewHolder) holder;
+                loadingVH.progressBar.setIndeterminate(true);
                 break;
         }
     }
@@ -171,8 +172,13 @@ public class PaginationAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
     public class LoadingViewHolder extends RecyclerView.ViewHolder {
 
+        private ProgressBar progressBar;
+
         public LoadingViewHolder(View itemView) {
             super(itemView);
+
+            progressBar = (ProgressBar) itemView.findViewById(R.id.progressBar);
+
         }
     }
 }

@@ -8,11 +8,13 @@
 
     <!--Kategori-->
     <string-array name="Kategori">
-        <item>Discover</item>
-        <item>Popularity</item>
-        <item>Release Date</item>
-        <item>Revenue</item>
-        <item>Rating</item>
+        <item>Genres</item>
+        <item>Action</item>
+        <item>Adventure</item>
+        <item>Comedy</item>
+        <item>Fantasy</item>
+        <item>Horror</item>
+        <item>War</item>
     </string-array>
 
     <string name="title_activity_splash_screen">SplashScreen</string>

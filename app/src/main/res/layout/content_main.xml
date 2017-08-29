@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,12 +7,14 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.yayanheryanto.moviemaster.MainActivity"
     tools:showIn="@layout/app_bar_main"
-    android:background="@drawable/bg_content">
+    android:background="@drawable/bg_content"
+    android:orientation="vertical">
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/swipeRefresh"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerView"
@@ -23,4 +25,4 @@
         </android.support.v7.widget.RecyclerView>
     </android.support.v4.widget.SwipeRefreshLayout>
 
-</RelativeLayout>
+</android.support.design.widget.CoordinatorLayout>

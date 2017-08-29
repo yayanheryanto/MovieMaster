@@ -8,8 +8,6 @@ import com.google.gson.annotations.SerializedName;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.yayanheryanto.moviemaster.config.EndPoint.BASE_IMAGE;
-
 /**
  * Created by Yayan Heryanto on 8/20/2017.
  */
@@ -68,7 +66,7 @@ public class Movie implements Parcelable {
     }
 
     public String getPosterPath() {
-        return BASE_IMAGE + posterPath;
+        return posterPath;
     }
 
     public void setPosterPath(String posterPath) {
@@ -140,7 +138,7 @@ public class Movie implements Parcelable {
     }
 
     public String getBackdropPath() {
-        return BASE_IMAGE + backdropPath;
+        return backdropPath;
     }
 
     public void setBackdropPath(String backdropPath) {

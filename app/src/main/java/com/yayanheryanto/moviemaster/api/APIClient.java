@@ -1,5 +1,6 @@
 package com.yayanheryanto.moviemaster.api;
 
+import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -12,6 +13,13 @@ import static com.yayanheryanto.moviemaster.config.EndPoint.BASE_URL;
 public class APIClient {
     public static Retrofit retrofit = null;
 
+//    private static OkHttpClient buildClient() {
+//        return new OkHttpClient
+//                .Builder()
+//                .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+//                .build();
+//    }
+//
     public static Retrofit getApiClient(){
 
         if (retrofit == null) {

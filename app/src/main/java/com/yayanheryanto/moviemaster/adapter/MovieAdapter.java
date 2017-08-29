@@ -3,6 +3,7 @@ package com.yayanheryanto.moviemaster.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,8 @@ import com.yayanheryanto.moviemaster.R;
 import com.yayanheryanto.moviemaster.model.Movie;
 
 import java.util.List;
+
+import static com.yayanheryanto.moviemaster.config.EndPoint.BASE_IMAGE;
 
 /**
  * Created by Yayan Heryanto on 8/19/2017.
@@ -43,8 +46,10 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
     public void onBindViewHolder(MovieAdapter.MovieViewHolder holder, int position) {
         final Movie movie = movieModels.get(position);
         holder.judulMovie.setText(movie.getTitle());
+        String image = BASE_IMAGE + movie.getPosterPath();
         Glide.with(context)
-                .load(movie.getPosterPath())
+                .load(image)
+                .error(R.drawable.error)
                 .into(holder.gambarMovie);
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,6 +60,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
                 context.startActivity(intent);
             }
         });
+//        Log.d("Poster", movie.getPosterPath());
     }
 
     @Override

@@ -18,13 +18,13 @@
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:orientation="vertical">
 
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="210dp"
                 android:id="@+id/gambarMovie"
                 android:src="@drawable/conan"
                 android:adjustViewBounds="true"

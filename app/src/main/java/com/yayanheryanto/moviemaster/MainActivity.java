@@ -1,6 +1,7 @@
 package com.yayanheryanto.moviemaster;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -68,9 +69,7 @@ public class MainActivity extends AppCompatActivity
         setSpinner();
         setRecyclerView();
         initRetrofit();
-
     }
-
 
     private void initRetrofit() {
         apiInterface = APIClient.getApiClient().create(APIInterface.class);
@@ -122,6 +121,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 layoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
+                if (layoutManager != null)
                 layoutManager.scrollToPositionWithOffset(0,0);
             }
         });
@@ -129,7 +129,7 @@ public class MainActivity extends AppCompatActivity
 
     private void setToolbar() {
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setDisplayShowTitleEnabled(true);
     }
 
     private void setDrawer() {
@@ -154,31 +154,43 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 switch (kategori[position]){
-                    case "Discover" :
+                    case "Genres" :
 
                         break;
 
-                    case "Popularity" :
-                        call = apiInterface.getSortMovie(API_KEY, "popularity.asc");
-                        getMovie(call);
+                    case "Action" :
+                        Call<MovieResponse> mcall = apiInterface.getGenreMovie(28, API_KEY);
+                        getMovie(mcall);
                         break;
 
-                    case "Release Date" :
-                        call = apiInterface.getSortMovie(API_KEY, "release_date.asc");
-                        getMovie(call);
+                    case "Adventure" :
+                        Call<MovieResponse> mcall1 = apiInterface.getGenreMovie(12, API_KEY);
+                        getMovie(mcall1);
                         break;
 
-                    case "Revenue" :
-                        call = apiInterface.getSortMovie(API_KEY, "revenue.asc");
-                        getMovie(call);
+                    case "Comedy" :
+                        Call<MovieResponse> mcall2 = apiInterface.getGenreMovie(35, API_KEY);
+                        getMovie(mcall2);
                         break;
 
-                    case "Rating" :
-                        call = apiInterface.getSortMovie(API_KEY, "vote_average.asc");
-                        getMovie(call);
+                    case "Fantasy" :
+                        Call<MovieResponse> mcall3 = apiInterface.getGenreMovie(14, API_KEY);
+                        getMovie(mcall3);
                         break;
 
-                    default: Log.d("Error", "Terjadi Kesalahan");
+                    case "Horror" :
+                        Call<MovieResponse> mcall4 = apiInterface.getGenreMovie(27, API_KEY);
+                        getMovie(mcall4);
+                        break;
+
+                    case "War" :
+                        Call<MovieResponse> mcall5 = apiInterface.getGenreMovie(10752, API_KEY);
+                        getMovie(mcall5);
+                        break;
+
+
+                    default:
+                        Log.d("Error", "Terjadi Kesalahan");
                         break;
                 }
             }
@@ -246,8 +258,7 @@ public class MainActivity extends AppCompatActivity
 
     private void getMovie(Call<MovieResponse> mCall){
         swipeRefresh.setRefreshing(true);
-        this.call = mCall;
-        call.enqueue(new Callback<MovieResponse>() {
+        mCall.enqueue(new Callback<MovieResponse>() {
             @Override
             public void onResponse(Call<MovieResponse> call, Response<MovieResponse> response) {
                 swipeRefresh.setRefreshing(false);
@@ -275,20 +286,20 @@ public class MainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_popular) {
-            call = apiInterface.getPopularMovie(API_KEY);
-            getMovie(call);
+            Call<MovieResponse> mcall = apiInterface.getPopularMovie(API_KEY);
+            getMovie(mcall);
             return true;
         }else if (id==R.id.action_top_rated){
-            call = apiInterface.getTopRatedMovies(API_KEY);
-            getMovie(call);
+            Call<MovieResponse> mcall = apiInterface.getTopRatedMovies(API_KEY);
+            getMovie(mcall);
             return true;
         }else if (id==R.id.action_upcoming){
-            call = apiInterface.getUpComingMovie(API_KEY);
-            getMovie(call);
+            Call<MovieResponse> mcall = apiInterface.getUpComingMovie(API_KEY);
+            getMovie(mcall);
             return true;
         }else if (id==R.id.action_now_playing){
-            call = apiInterface.getNowPlayingMovies(API_KEY);
-            getMovie(call);
+            Call<MovieResponse> mcall = apiInterface.getNowPlayingMovies(API_KEY);
+            getMovie(mcall);
             return true;
         }
 
@@ -300,9 +311,11 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+        item.setCheckable(false);
 
         if (id == R.id.nav_favorit) {
-
+            Intent intent = new Intent(MainActivity.this, FavoriteMovie.class);
+            startActivity(intent);
         } else if (id == R.id.nav_about) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setCancelable(false);

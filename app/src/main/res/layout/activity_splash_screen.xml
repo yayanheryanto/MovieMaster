@@ -9,15 +9,16 @@
 
     <ImageView
         android:id="@+id/image"
-        android:layout_width="280dp"
-        android:layout_height="240dp"
-        android:src="@drawable/conan"
-        android:layout_centerInParent="true"/>
+        android:layout_width="180dp"
+        android:layout_height="160dp"
+        android:layout_centerInParent="true"
+        android:src="@drawable/icon"/>
 
     <ProgressBar
         android:id="@+id/progressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/image"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"/>
 </RelativeLayout>
