@@ -5,6 +5,8 @@ import com.yayanheryanto.moviemaster.model.VideoResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Headers;
+import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
@@ -57,5 +59,4 @@ public interface APIInterface {
 
     @GET("genre/{genre_id}/movies")
     Call<MovieResponse> getGenreMovie(@Path("genre_id") int genre_id, @Query("api_key") String apiKey);
-
 }

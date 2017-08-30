@@ -108,9 +108,8 @@ public class MainActivity extends AppCompatActivity
         swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                navigationSpinner.setSelection(0);
-                call = null;
-                initRetrofit();
+                Call<MovieResponse> mCall = call.clone();
+                getMovie(mCall);
 
             }
         });
@@ -129,7 +128,7 @@ public class MainActivity extends AppCompatActivity
 
     private void setToolbar() {
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
     }
 
     private void setDrawer() {
@@ -159,33 +158,33 @@ public class MainActivity extends AppCompatActivity
                         break;
 
                     case "Action" :
-                        Call<MovieResponse> mcall = apiInterface.getGenreMovie(28, API_KEY);
-                        getMovie(mcall);
+                        call = apiInterface.getGenreMovie(28, API_KEY);
+                        getMovie(call);
                         break;
 
                     case "Adventure" :
-                        Call<MovieResponse> mcall1 = apiInterface.getGenreMovie(12, API_KEY);
-                        getMovie(mcall1);
+                        call = apiInterface.getGenreMovie(12, API_KEY);
+                        getMovie(call);
                         break;
 
                     case "Comedy" :
-                        Call<MovieResponse> mcall2 = apiInterface.getGenreMovie(35, API_KEY);
-                        getMovie(mcall2);
+                        call = apiInterface.getGenreMovie(35, API_KEY);
+                        getMovie(call);
                         break;
 
                     case "Fantasy" :
-                        Call<MovieResponse> mcall3 = apiInterface.getGenreMovie(14, API_KEY);
-                        getMovie(mcall3);
+                        call = apiInterface.getGenreMovie(14, API_KEY);
+                        getMovie(call);
                         break;
 
                     case "Horror" :
-                        Call<MovieResponse> mcall4 = apiInterface.getGenreMovie(27, API_KEY);
-                        getMovie(mcall4);
+                        call = apiInterface.getGenreMovie(27, API_KEY);
+                        getMovie(call);
                         break;
 
                     case "War" :
-                        Call<MovieResponse> mcall5 = apiInterface.getGenreMovie(10752, API_KEY);
-                        getMovie(mcall5);
+                        call = apiInterface.getGenreMovie(10752, API_KEY);
+                        getMovie(call);
                         break;
 
 
@@ -283,23 +282,24 @@ public class MainActivity extends AppCompatActivity
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
+        navigationSpinner.setSelection(0);
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_popular) {
-            Call<MovieResponse> mcall = apiInterface.getPopularMovie(API_KEY);
-            getMovie(mcall);
+            call = apiInterface.getPopularMovie(API_KEY);
+            getMovie(call);
             return true;
         }else if (id==R.id.action_top_rated){
-            Call<MovieResponse> mcall = apiInterface.getTopRatedMovies(API_KEY);
-            getMovie(mcall);
+            call = apiInterface.getTopRatedMovies(API_KEY);
+            getMovie(call);
             return true;
         }else if (id==R.id.action_upcoming){
-            Call<MovieResponse> mcall = apiInterface.getUpComingMovie(API_KEY);
-            getMovie(mcall);
+            call = apiInterface.getUpComingMovie(API_KEY);
+            getMovie(call);
             return true;
         }else if (id==R.id.action_now_playing){
-            Call<MovieResponse> mcall = apiInterface.getNowPlayingMovies(API_KEY);
-            getMovie(mcall);
+            call = apiInterface.getNowPlayingMovies(API_KEY);
+            getMovie(call);
             return true;
         }
 

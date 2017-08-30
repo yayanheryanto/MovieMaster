@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -28,6 +29,7 @@ public class FavoriteMovie extends AppCompatActivity {
     private List<Movie> movies;
     private CoordinatorLayout layout;
     private FloatingActionButton fab;
+    private SwipeRefreshLayout swipeRefresh;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +40,19 @@ public class FavoriteMovie extends AppCompatActivity {
         bindingData();
         setFab();
         initDatabases();
+        setSwipeRefresh();
+
+    }
+
+    private void setSwipeRefresh() {
+        swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                swipeRefresh.setRefreshing(true);
+                initDatabases();
+                swipeRefresh.setRefreshing(false);
+            }
+        });
     }
 
     @Override
@@ -55,6 +70,7 @@ public class FavoriteMovie extends AppCompatActivity {
         recyclerView = (RecyclerView) findViewById(R.id.rvFavorite);
         layout = (CoordinatorLayout) findViewById(R.id.relativeLayout);
         fab = (FloatingActionButton) findViewById(R.id.fab);
+        swipeRefresh = (SwipeRefreshLayout) findViewById(R.id.swipeRefresh);
     }
 
     private void setFab() {

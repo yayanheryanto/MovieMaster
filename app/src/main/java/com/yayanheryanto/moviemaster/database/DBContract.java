@@ -15,4 +15,5 @@ public class DBContract {
     public static final String COLUMN_RELASE_DATE = "tanggal";
     public static final String COLUMN_RATING = "rating";
     public static final String COLUMN_OVERVIEW = "overview";
+
 }

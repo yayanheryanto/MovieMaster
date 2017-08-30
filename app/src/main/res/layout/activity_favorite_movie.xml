@@ -2,18 +2,26 @@
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.yayanheryanto.moviemaster.FavoriteMovie"
-    android:id="@+id/relativeLayout"
-    android:background="@drawable/bg_content">
+    android:background="@drawable/bg_content"
+    tools:context="com.yayanheryanto.moviemaster.FavoriteMovie">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rvFavorite"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefresh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal">
 
-    </android.support.v7.widget.RecyclerView>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvFavorite"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </android.support.v7.widget.RecyclerView>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
@@ -21,7 +29,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@drawable/ic_keyboard_arrow_up"
-        app:backgroundTint="@android:color/white"/>
+        app:backgroundTint="@android:color/white"
+        app:srcCompat="@drawable/ic_keyboard_arrow_up" />
 
 </android.support.design.widget.CoordinatorLayout>
