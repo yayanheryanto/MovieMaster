@@ -146,23 +146,26 @@ public class DetailActivity extends AppCompatActivity {
         detailRate.setText(String.valueOf(movie.getVoteAverage()));
         overview.setText(movie.getOverview());
 
-        String image = BASE_IMAGE + movie.getPosterPath();
-        Glide.with(this)
-                .load(image)
-                .error(R.drawable.error)
-                .into(detailGambar);
+        if (movie.getPosterPath()==null){
+            Glide.with(this)
+                    .load(R.drawable.error)
+                    .into(detailGambar);
+        }else {
+            String image = BASE_IMAGE + movie.getPosterPath();
+            Glide.with(this)
+                    .load(image)
+                    .into(detailGambar);
+        }
 
         if (movie.getBackdropPath()==null){
             String backdroph = BASE_IMAGE + movie.getPosterPath();
             Glide.with(this)
                     .load(backdroph)
-                    .error(R.drawable.error)
                     .into(backdrophImage);
         }else {
             String backdroph = BASE_IMAGE + movie.getBackdropPath();
             Glide.with(this)
                     .load(backdroph)
-                    .error(R.drawable.error)
                     .into(backdrophImage);
         }
         Log.d("Posterpath", movie.getPosterPath() + " Backdroph " + movie.getBackdropPath());

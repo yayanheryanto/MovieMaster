@@ -49,7 +49,6 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
         String image = BASE_IMAGE + movie.getPosterPath();
         Glide.with(context)
                 .load(image)
-                .error(R.drawable.error)
                 .into(holder.gambarMovie);
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
